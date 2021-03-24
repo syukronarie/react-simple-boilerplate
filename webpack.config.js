@@ -16,23 +16,29 @@ const miniCssExtractPlugin = new MiniCssExtractPlugin({
 const esLintPlugin = new ESLintPlugin();
 
 module.exports = {
-	//our index file
+	mode: "development",
 	entry: path.resolve(__dirname, "src/index.tsx"),
+	devtool: "eval-source-map",
 	devServer: {
-		contentBase: "./public",
+		publicPath: "/",
+		contentBase: "public",
 		hot: true,
+		port: 8000,
 	},
-	//Where we put the production code
 	output: {
 		path: path.resolve(__dirname, "dist"),
 		filename: "[name].[contenthash].js",
 		publicPath: "/",
 	},
-	// This says to webpack that we are in development mode and write the code in webpack file in different way
-	mode: "development",
+	resolve: {
+		extensions: [".ts", ".tsx", ".js", ".jsx"],
+	},
 	module: {
 		rules: [
-			//Allows use javascript
+			{
+				test: /\.ts(x?)$/,
+				use: [{ loader: "ts-loader" }],
+			},
 			{
 				test: /\.(js|jsx)$/,
 				exclude: /node_modules/, //don't test node_modules folder
@@ -43,7 +49,6 @@ module.exports = {
 					extensions: [".js", ".jsx"],
 				},
 			},
-			//Allows use of CSS
 			{
 				test: /\.css$/i,
 				use: [
@@ -53,7 +58,6 @@ module.exports = {
 					"css-loader",
 				],
 			},
-			//Allows use of images
 			{
 				test: /\.(png|jpg|svg)$/i,
 				loader: "file-loader",
@@ -61,22 +65,11 @@ module.exports = {
 		],
 	},
 	plugins: [
-		//Allows remove/clean the build folder
 		cleanWebpackPlugin,
-		//Allows update react components in real time
 		hotModuleReplacementPlugin,
-		//Allows to create an index.html in our build folder
 		htmlModule,
-		//This get all our css and put in a unique file
 		miniCssExtractPlugin,
-		//Linting
 		esLintPlugin,
 	],
-	//Config for webpack-dev-server module
-	devServer: {
-		historyApiFallback: true,
-		contentBase: path.resolve(__dirname, "dist"),
-		hot: true,
-		port: 8000,
-	},
+	stats: "errors-warnings",
 };

@@ -1,4 +1,5 @@
 {
 	"parser": "@typescript-eslint/parser",
 	"plugins": ["@typescript-eslint"]
+	// "stats.errorDetails": true
 }

@@ -17,7 +17,7 @@ const App = () => {
 					architecto nam suscipit cumque debitis. Recusandae quibusdam ab quos
 					similique.
 				</p>
-				{Array.from({ length: 20 }).map((e, i) => (
+				{Array.from({ length: 20 }).map((_e, i) => (
 					<img
 						src={`https://source.unsplash.com/collection/${i}`}
 						alt="random-images"

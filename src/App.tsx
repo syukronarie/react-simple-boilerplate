@@ -1,11 +1,8 @@
-import "./Styles.css";
+import "./globalStyle.scss";
 
-import React, { useEffect } from "react";
+import React from "react";
 
 const App = () => {
-	useEffect(() => {
-		console.log("hello");
-	}, []);
 	return (
 		<div>
 			<h1>Hello world</h1>
@@ -17,12 +14,12 @@ const App = () => {
 					architecto nam suscipit cumque debitis. Recusandae quibusdam ab quos
 					similique.
 				</p>
-				{Array.from({ length: 20 }).map((_e, i) => (
+				{/* {Array.from({ length: 1 }).map((_e, i) => (
 					<img
 						src={`https://source.unsplash.com/collection/${i}`}
 						alt="random-images"
 					/>
-				))}
+				))} */}
 			</div>
 		</div>
 	);

@@ -1,6 +1,10 @@
 /* body { */
 /* background-color: black; */
 /* } */
+
+$pink: #ee3;
+
 * {
-	color: black;
+	color: $pink;
+	/* color: white; */
 }

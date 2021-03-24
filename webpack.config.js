@@ -1,9 +1,9 @@
 const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const ESLintPlugin = require("eslint-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { HotModuleReplacementPlugin } = require("webpack");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const ESLintPlugin = require("eslint-webpack-plugin");
 
 const htmlModule = new HtmlWebpackPlugin({
 	template: path.resolve(__dirname, "public/index.html"), //we put the file that we created in public folder
@@ -11,8 +11,13 @@ const htmlModule = new HtmlWebpackPlugin({
 const cleanWebpackPlugin = new CleanWebpackPlugin();
 const hotModuleReplacementPlugin = new HotModuleReplacementPlugin();
 const miniCssExtractPlugin = new MiniCssExtractPlugin({
-	filename: "styles.[contenthash].css",
+	linkType: "text/css",
+	filename: "[name].css",
+	chunkFilename: "[id].css",
 });
+// {
+// 	filename: "styles.[contenthash].css",
+// }
 const esLintPlugin = new ESLintPlugin();
 
 module.exports = {
@@ -50,13 +55,8 @@ module.exports = {
 				},
 			},
 			{
-				test: /\.css$/i,
-				use: [
-					{
-						loader: MiniCssExtractPlugin.loader,
-					},
-					"css-loader",
-				],
+				test: /\.(s)+css$/i,
+				use: [MiniCssExtractPlugin.loader, "css-loader"],
 			},
 			{
 				test: /\.(png|jpg|svg)$/i,
@@ -71,5 +71,14 @@ module.exports = {
 		miniCssExtractPlugin,
 		esLintPlugin,
 	],
-	stats: "errors-warnings",
+	stats: {
+		assets: true,
+		children: false,
+		chunks: false,
+		errors: true,
+		errorDetails: true,
+		modules: false,
+		timings: true,
+		colors: true,
+	},
 };

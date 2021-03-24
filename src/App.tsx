@@ -1,6 +1,6 @@
-import React from "react";
-import { useEffect } from "react";
 import "./Styles.css";
+
+import React, { useEffect } from "react";
 
 const App = () => {
 	useEffect(() => {

@@ -1,5 +1,6 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const ESLintPlugin = require("eslint-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { HotModuleReplacementPlugin } = require("webpack");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
@@ -7,18 +8,16 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const htmlModule = new HtmlWebpackPlugin({
 	template: path.resolve(__dirname, "public/index.html"), //we put the file that we created in public folder
 });
-
 const cleanWebpackPlugin = new CleanWebpackPlugin();
-
 const hotModuleReplacementPlugin = new HotModuleReplacementPlugin();
-
 const miniCssExtractPlugin = new MiniCssExtractPlugin({
 	filename: "styles.[contenthash].css",
 });
+const esLintPlugin = new ESLintPlugin();
 
 module.exports = {
 	//our index file
-	entry: path.resolve(__dirname, "src/index.js"),
+	entry: path.resolve(__dirname, "src/index.tsx"),
 	devServer: {
 		contentBase: "./public",
 		hot: true,
@@ -70,6 +69,8 @@ module.exports = {
 		htmlModule,
 		//This get all our css and put in a unique file
 		miniCssExtractPlugin,
+		//Linting
+		esLintPlugin,
 	],
 	//Config for webpack-dev-server module
 	devServer: {

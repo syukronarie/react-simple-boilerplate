@@ -19,6 +19,10 @@ const miniCssExtractPlugin = new MiniCssExtractPlugin({
 module.exports = {
 	//our index file
 	entry: path.resolve(__dirname, "src/index.js"),
+	devServer: {
+		contentBase: "./public",
+		hot: true,
+	},
 	//Where we put the production code
 	output: {
 		path: path.resolve(__dirname, "dist"),

@@ -1,27 +1,26 @@
 import "./globalStyle.scss";
 
-import React from "react";
+import React, { Suspense } from "react";
+import Helmet from "react-helmet";
+import { BrowserRouter as Router } from "react-router-dom";
 
-const App = () => {
+import NavbarDekstop from "./components/navbar/NavbarDekstop";
+import AppRoutes from "./routers/Routers";
+
+const App: React.FC = () => {
 	return (
-		<div>
-			<h1>Hello world</h1>
-			<h5>Simple Boiler Plate</h5>
-			<div>
-				<p>
-					Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores
-					quia, nisi illo earum velit error! Perferendis quae id quis. Saepe
-					architecto nam suscipit cumque debitis. Recusandae quibusdam ab quos
-					similique.
-				</p>
-				{/* {Array.from({ length: 1 }).map((_e, i) => (
-					<img
-						src={`https://source.unsplash.com/collection/${i}`}
-						alt="random-images"
-					/>
-				))} */}
-			</div>
-		</div>
+		<>
+			<Helmet>
+				<title>Simple React Boiler Plate | Journey App</title>
+				<meta name="description" content="Helmet application" />
+			</Helmet>
+			<Router>
+				<Suspense fallback="">
+					<NavbarDekstop />
+					<AppRoutes />
+				</Suspense>
+			</Router>
+		</>
 	);
 };
 

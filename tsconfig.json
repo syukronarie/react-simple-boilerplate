@@ -1,6 +1,6 @@
 {
 	"compilerOptions": {
-		"jsx": "react",
+		"jsx": "react-jsx",
 		"lib": ["es6", "dom"],
 		"rootDir": "src",
 		"module": "commonjs",

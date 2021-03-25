@@ -1,10 +1,9 @@
-import React, { lazy } from "react";
+import React from "react";
 import { Route, Switch } from "react-router-dom";
 
-// import ImageDetail from "src/components/pages/ImageDetail/ImageDetailPage";
-// import ImageHomePage from "../components/pages/ImageHome/ImageHomePage";
+import loadable from "@loadable/component";
 
-const HomePage = lazy(() => import("../components/pages/home/HomePage"));
+const HomePage = loadable(() => import("../components/pages/home/HomePage"));
 
 const AppRoutes: React.FC = () => {
 	return (

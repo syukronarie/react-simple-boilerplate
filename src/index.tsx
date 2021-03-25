@@ -1,6 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-import App from "./App";
+import loadable from "@loadable/component";
 
-ReactDOM.render(<App />, document.getElementById("root"));
+const App = loadable(() => import("./App"));
+
+ReactDOM.render(
+	<React.StrictMode>
+		<App />
+	</React.StrictMode>,
+	document.getElementById("root")
+);

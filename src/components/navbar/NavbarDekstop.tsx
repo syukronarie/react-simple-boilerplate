@@ -1,5 +1,5 @@
-import React, { useCallback, useEffect, useState } from "react";
-import { NavLink, useHistory } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
 import GlobalColors from "../../assets/styles/colors/colors.global";
@@ -7,15 +7,15 @@ import Sizing from "../../assets/styles/sizings/sizings.global";
 
 const NavbarDekstop: React.FC = () => {
 	const [shadowNavbar, setShadowNavbar] = useState(false);
-	const [showSearch, setShowSearch] = useState(false);
-	const history = useHistory();
+	// const [showSearch, setShowSearch] = useState(false);
+	// const history = useHistory();
 
-	const handleSearching = useCallback(
-		(e: React.ChangeEvent<HTMLInputElement>) => {
-			history.push(`/?search=${e.target.value}`);
-		},
-		[history]
-	);
+	// const handleSearching = useCallback(
+	// 	(e: React.ChangeEvent<HTMLInputElement>) => {
+	// 		history.push(`/?search=${e.target.value}`);
+	// 	},
+	// 	[history]
+	// );
 
 	const handleScroll = () => {
 		window.pageYOffset > 60 ? setShadowNavbar(true) : setShadowNavbar(false);
@@ -28,20 +28,20 @@ const NavbarDekstop: React.FC = () => {
 		};
 	});
 
-	useEffect(() => {
-		console.log(showSearch);
-	}, [showSearch]);
-
 	return (
 		<StyledNavbar>
 			<nav className={`navbar ${shadowNavbar ? "navbarActive" : ""}`}>
 				<ul className="menus">
-					<NavLink to="/" exact>
-						<li className="menuItem">Home</li>
-					</NavLink>
-					<NavLink to="/info" exact>
-						<li className="menuItem">Info</li>
-					</NavLink>
+					<li className="menuItem">
+						<NavLink to="/" exact>
+							Home
+						</NavLink>
+					</li>
+					<li className="menuItem">
+						<NavLink to="/info" exact>
+							Info
+						</NavLink>
+					</li>
 				</ul>
 			</nav>
 		</StyledNavbar>
@@ -111,24 +111,33 @@ const StyledNavbar = styled.div`
 		flex-flow: row;
 		font-size: 0.875rem;
 		font-weight: 700;
+
+		a {
+			padding: 16px;
+			&:hover {
+				border-radius: 99px;
+				background-color: ${GlobalColors.WHITE_TRANSPARENT};
+				color: ${GlobalColors.BLACK};
+			}
+		}
+
 		.active {
 			font-weight: bold;
 			color: White;
 			background-color: ${GlobalColors.BLACK};
 			border-radius: 99px;
-			padding: 0;
+			padding: 16px;
+
 			&:hover {
 				background-color: ${GlobalColors.WHITE_TRANSPARENT};
 				color: ${GlobalColors.BLACK};
 			}
 		}
 	}
+
 	.menuItem {
-		padding: 16px 16px;
-		&:hover {
-			border-radius: 30px;
-			background-color: ${GlobalColors.WHITE_TRANSPARENT};
-		}
+		margin: 20px;
+		cursor: pointer;
 	}
 	.wrapperInput {
 		display: flex;

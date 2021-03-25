@@ -19,7 +19,19 @@ const esLintPlugin = new ESLintPlugin();
 
 module.exports = {
 	mode: "development",
-	entry: path.resolve(__dirname, "src/index.tsx"),
+	entry: {
+		app: {
+			import: ["./src/index.tsx", "./src/App.tsx"],
+			dependOn: "react-vendors",
+		},
+		"react-vendors": [
+			"react",
+			"react-dom",
+			"react-router-dom",
+			"@loadable/component",
+			// "styled-components",
+		],
+	},
 	devtool: "eval-source-map",
 	devServer: {
 		publicPath: "/",
@@ -83,5 +95,10 @@ module.exports = {
 		modules: true,
 		timings: true,
 		colors: true,
+	},
+	optimization: {
+		splitChunks: {
+			chunks: "all",
+		},
 	},
 };

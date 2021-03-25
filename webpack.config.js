@@ -15,9 +15,6 @@ const miniCssExtractPlugin = new MiniCssExtractPlugin({
 	filename: "[name].css",
 	chunkFilename: "[id].css",
 });
-// {
-// 	filename: "styles.[contenthash].css",
-// }
 const esLintPlugin = new ESLintPlugin();
 
 module.exports = {
@@ -56,7 +53,13 @@ module.exports = {
 			},
 			{
 				test: /\.(s)+css$/i,
-				use: [MiniCssExtractPlugin.loader, "css-loader"],
+				// use: [MiniCssExtractPlugin.loader, "css-loader"],
+				use: [
+					MiniCssExtractPlugin.loader,
+					// { loader: "file-loader" },
+					"css-loader",
+					// "style-loader",
+				],
 			},
 			{
 				test: /\.(png|jpg|svg)$/i,
@@ -74,10 +77,10 @@ module.exports = {
 	stats: {
 		assets: true,
 		children: false,
-		chunks: false,
+		chunks: true,
 		errors: true,
 		errorDetails: true,
-		modules: false,
+		modules: true,
 		timings: true,
 		colors: true,
 	},

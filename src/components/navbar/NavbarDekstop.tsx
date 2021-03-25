@@ -34,68 +34,15 @@ const NavbarDekstop: React.FC = () => {
 
 	return (
 		<StyledNavbar>
-			<nav className="navbarMobile">
-				{showSearch && (
-					<div className="searchMobile">
-						<label htmlFor="search">SEARCH:</label>
-						<input
-							type="text"
-							className="inputSearchMobile"
-							onChange={handleSearching}
-							placeholder="Search..."
-						/>
-					</div>
-				)}
-				<NavLink to="/" onClick={() => window.location.replace("/")}>
-					<div className="wrapperMenuMobile">
-						<h1 onClick={() => setShowSearch(false)}>Home</h1>
-					</div>
-				</NavLink>
-				<div className="wrapperMenuMobile">
-					<h1 onClick={() => setShowSearch(!showSearch)}>Search</h1>
-				</div>
-				<NavLink to="/info">
-					<div className="wrapperMenuMobile">
-						<h1>Info</h1>
-					</div>
-				</NavLink>
-
-				<div className="wrapperMenuMobile">
-					<h1>User</h1>
-				</div>
-			</nav>
 			<nav className={`navbar ${shadowNavbar ? "navbarActive" : ""}`}>
-				<NavLink to="/" onClick={() => window.location.replace("/")}>
-					<div className="wrapperIcon">
-						<h1>LOGO</h1>
-					</div>
-				</NavLink>
 				<ul className="menus">
-					<NavLink to="/" exact onClick={() => window.location.replace("/")}>
+					<NavLink to="/" exact>
 						<li className="menuItem">Home</li>
 					</NavLink>
 					<NavLink to="/info" exact>
 						<li className="menuItem">Info</li>
 					</NavLink>
 				</ul>
-				<div className="wrapperInput">
-					<label htmlFor="search">SEARCH:</label>
-					<input
-						className="searchInput"
-						onChange={handleSearching}
-						id="search"
-						placeholder="search"
-					/>
-				</div>
-				<div className="wrapperIcon">
-					<p>INFO</p>
-				</div>
-				<div className="wrapperIcon">
-					<p>USER</p>
-				</div>
-				<div className="wrapperIcon">
-					<p>V</p>
-				</div>
 			</nav>
 		</StyledNavbar>
 	);
